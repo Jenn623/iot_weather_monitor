@@ -1,0 +1,181 @@
+/* ── Fuentes ── */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=DM+Sans:wght@400;500;600&display=swap");
+
+/* ── Tailwind v4 ── */
+@import "tailwindcss";
+
+/* ────────────────────────────────────────────────
+   TOKENS GLOBALES — Modo claro (por defecto)
+   Usados como variables CSS directamente en
+   componentes con style={{ color: "var(--text)" }}
+   y también extendidos en Tailwind vía @theme.
+──────────────────────────────────────────────── */
+:root {
+  /* Fondos */
+  --bg:        #F1EFE8;
+  --surface:   #ffffff;
+  --surface2:  #F1EFE8;
+
+  /* Bordes */
+  --border:    #D3D1C7;
+  --border2:   #B4B2A9;
+
+  /* Textos */
+  --text:      #2C2C2A;
+  --text2:     #888780;
+  --text3:     #B4B2A9;
+
+  /* Rojo — temperatura / alertas críticas */
+  --red:       #E24B4A;
+  --red-bg:    #FCEBEB;
+  --red-txt:   #791F1F;
+
+  /* Azul — humedad */
+  --blue:      #378ADD;
+  --blue-bg:   #E6F1FB;
+  --blue-txt:  #0C447C;
+
+  /* Verde — estado normal */
+  --green-bg:  #EAF3DE;
+  --green-txt: #27500A;
+
+  /* Ámbar — advertencia / temp. mínima */
+  --amber:     #BA7517;
+  --amber-bg:  #FAEEDA;
+  --amber-txt: #633806;
+
+  /* Tipografía */
+  --font-sans: "DM Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  /* Radio de bordes */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+}
+
+/* ────────────────────────────────────────────────
+   TOKENS — Modo oscuro
+   Se activan cuando Tailwind agrega clase "dark"
+   en <html> (darkMode: 'class' en la config)
+──────────────────────────────────────────────── */
+.dark {
+  --bg:        #0D0F14;
+  --surface:   #161B27;
+  --surface2:  #1A1F2E;
+
+  --border:    #2A2F3D;
+  --border2:   #374151;
+
+  --text:      #F0F0F0;
+  --text2:     #6B7280;
+  --text3:     #374151;
+
+  --red:       #F09595;
+  --red-bg:    #501313;
+  --red-txt:   #F09595;
+
+  --blue:      #85B7EB;
+  --blue-bg:   #0C447C;
+  --blue-txt:  #85B7EB;
+
+  --green-bg:  #173404;
+  --green-txt: #97C459;
+
+  --amber:     #FAC775;
+  --amber-bg:  #412402;
+  --amber-txt: #FAC775;
+}
+
+/* ────────────────────────────────────────────────
+   TAILWIND v4 — Extensión de tema
+   Registra los tokens como clases utilitarias:
+   bg-surface, text-text2, border-border, etc.
+──────────────────────────────────────────────── */
+@theme {
+  /* Colores */
+  --color-bg:        var(--bg);
+  --color-surface:   var(--surface);
+  --color-surface2:  var(--surface2);
+  --color-border:    var(--border);
+  --color-border2:   var(--border2);
+  --color-text:      var(--text);
+  --color-text2:     var(--text2);
+  --color-text3:     var(--text3);
+
+  --color-red:       var(--red);
+  --color-red-bg:    var(--red-bg);
+  --color-red-txt:   var(--red-txt);
+
+  --color-blue:      var(--blue);
+  --color-blue-bg:   var(--blue-bg);
+  --color-blue-txt:  var(--blue-txt);
+
+  --color-green-bg:  var(--green-bg);
+  --color-green-txt: var(--green-txt);
+
+  --color-amber:     var(--amber);
+  --color-amber-bg:  var(--amber-bg);
+  --color-amber-txt: var(--amber-txt);
+
+  /* Tipografía */
+  --font-sans: "DM Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  /* Radios */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+}
+
+/* ────────────────────────────────────────────────
+   BASE GLOBAL
+──────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  width: 100%;
+}
+
+/* Transición suave en todos los elementos al cambiar de tema */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+
+/* Números y timestamps siempre en monospace */
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* Scrollbar sutil */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border2);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+#root{
+  width: 100%;
+  min-height: 100vh;
+}
