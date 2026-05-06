@@ -1,21 +1,24 @@
-# ── Stage único — imagen ligera de Python ─────────────────────
-FROM python:3.11-slim
-
-# Evita que Python genere archivos .pyc y buffers de stdout
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+# ── Stage 1: Build ────────────────────────────────────────────
+FROM node:20-alpine AS build
 
 WORKDIR /app
 
-# Instala dependencias primero (aprovecha caché de capas Docker)
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY package*.json ./
+RUN npm install
 
-# Copia el código fuente
-COPY main.py .
+COPY . .
 
-# Puerto que expone el backend
-EXPOSE 8000
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
 
-# Arranca uvicorn en modo producción (sin --reload)
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+RUN npm run build
+
+# ── Stage 2: Serve ─────────────────────────────────────────────
+FROM nginx:alpine
+
+COPY --from=build /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/templates/default.conf.template
+
+EXPOSE 80
+
+CMD ["/bin/sh", "-c", "envsubst '$PORT' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
