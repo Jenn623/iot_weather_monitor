@@ -27,7 +27,7 @@ const SIMULATION_MODE = false;
 // ── URL del backend ────────────────────────────────────────────
 // Reemplaza con la URL que te genere ngrok en el paso 2.
 // Ejemplo: "https://abc123.ngrok-free.app"
-const API_URL = import.meta.env.VITE_API_URL || "http://192.168.49.2:30080";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 const POLL_INTERVAL   = 5000;                        // ms entre lecturas (simuladas o reales)
 const MAX_HISTORY     = 60;                          // máximo de puntos en las gráficas
 const MAX_READINGS    = 50;                          // máximo de filas en la tabla

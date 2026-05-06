@@ -30,7 +30,7 @@ const char* password = "0327jenni";     // <-- cambia esto
 // ── Backend ───────────────────────────────────────────────────
 // Pega aquí la URL que te genere ngrok en el paso 2.
 // Ejemplo: "https://abc123.ngrok-free.app/api/sensor/data"
-const char* serverURL = "http://192.168.191.21:8000/api/sensor/data";
+const char* serverURL = "https://iotweathermonitor-production-ece1.up.railway.app/api/sensor/data";
 
 // ── Intervalo de envío ────────────────────────────────────────
 const unsigned long INTERVAL = 5000;  // 5 segundos
