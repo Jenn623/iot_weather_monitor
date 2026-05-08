@@ -6,14 +6,11 @@ const ThemeContext = createContext(null);
 
 export function ThemeProvider({ children }) {
   const [isDark, setIsDark] = useState(() => {
-    // 1. Si el usuario ya eligió un tema antes, úsalo
     const stored = localStorage.getItem("iot-theme");
     if (stored) return stored === "dark";
-    // 2. Si no, respeta la preferencia del sistema operativo
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
 
-  // Aplica / quita la clase "dark" en <html> cada vez que cambie el tema
   useEffect(() => {
     const root = document.documentElement;
     if (isDark) {
@@ -33,7 +30,6 @@ export function ThemeProvider({ children }) {
   );
 }
 
-// Hook para consumir el contexto fácilmente desde cualquier componente
 export function useTheme() {
   const ctx = useContext(ThemeContext);
   if (!ctx) throw new Error("useTheme debe usarse dentro de <ThemeProvider>");

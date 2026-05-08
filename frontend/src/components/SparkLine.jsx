@@ -128,51 +128,20 @@ export default function SparkLine({ data = [], color, title, unit }) {
   const lastValue = data.length > 0 ? data[data.length - 1] : null;
 
   return (
-    <div
-      style={{
-        background:   "var(--surface)",
-        border:       "0.5px solid var(--border)",
-        borderRadius: "var(--radius-lg)",
-      }}
-      className="px-4 pt-4 pb-3"
-    >
-      {/* Cabecera: título + último valor */}
-      <div className="flex items-center justify-between mb-3">
-        <p
-          style={{
-            color:      "var(--text2)",
-            fontFamily: "var(--font-sans)",
-          }}
-          className="text-[12px] font-semibold"
-        >
-          {title}
-        </p>
-
-        {lastValue !== null && (
-          <span
-            style={{
-              color:      color,
-              fontFamily: "var(--font-mono)",
-            }}
-            className="text-[13px] font-semibold"
-          >
-            {lastValue.toFixed(1)}{unit}
-          </span>
-        )}
-      </div>
+    <div className="w-full">
+      {/* Cabecera solo si hay título */}
+      {title && (
+        <div className="flex items-center justify-between mb-3">
+          <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">{title}</p>
+          {lastValue !== null && (
+            <span className="text-sm font-bold mono" style={{ color }}>{lastValue.toFixed(1)}{unit}</span>
+          )}
+        </div>
+      )}
 
       {/* Canvas de la gráfica */}
       {data.length < 2 ? (
-        <div
-          style={{
-            height:       "100px",
-            color:        "var(--text3)",
-            fontFamily:   "var(--font-sans)",
-            border:       "0.5px dashed var(--border)",
-            borderRadius: "var(--radius-sm)",
-          }}
-          className="flex items-center justify-center text-[12px]"
-        >
+        <div className="h-24 flex items-center justify-center text-xs text-slate-400 border border-dashed border-slate-200 dark:border-slate-700 rounded-lg">
           Esperando datos del sensor…
         </div>
       ) : (

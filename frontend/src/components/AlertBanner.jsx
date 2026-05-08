@@ -21,16 +21,8 @@ import { useEffect, useState } from "react";
 
 // ── Estilos por tipo de alerta ───────────────────────────────
 const STYLES = {
-  critical: {
-    bg:     "var(--red-bg)",
-    border: "var(--red)",
-    color:  "var(--red-txt)",
-  },
-  warning: {
-    bg:     "var(--amber-bg)",
-    border: "var(--amber)",
-    color:  "var(--amber-txt)",
-  },
+  critical: "bg-rose-50 border border-rose-300 text-rose-700 dark:bg-rose-500/10 dark:border-rose-500/30 dark:text-rose-400",
+  warning:  "bg-amber-50 border border-amber-300 text-amber-700 dark:bg-amber-500/10 dark:border-amber-500/30 dark:text-amber-400",
 };
 
 // ── Icono de advertencia ─────────────────────────────────────
@@ -127,22 +119,16 @@ export default function AlertBanner({ temperature = null, humidity = null }) {
   // No renderiza nada si no hay alerta o fue descartada
   if (!alert || dismissed) return null;
 
-  const s = STYLES[alert.type];
+  const cls = STYLES[alert.type] || STYLES.warning;
 
   return (
     <div
       style={{
-        background:   s.bg,
-        border:       `1px solid ${s.border}`,
-        color:        s.color,
-        borderRadius: "var(--radius-md)",
-        fontFamily:   "var(--font-sans)",
-        // Animación de entrada: desliza desde arriba
-        opacity:    visible ? 1 : 0,
-        transform:  visible ? "translateY(0)" : "translateY(-8px)",
+        opacity:   visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(-8px)",
         transition: "opacity 0.3s ease, transform 0.3s ease",
       }}
-      className="flex items-center gap-3 px-4 py-3 mb-4"
+      className={`flex items-center gap-3 px-4 py-3 mb-2 rounded-xl ${cls}`}
       role="alert"
     >
       {/* Icono */}
@@ -157,17 +143,7 @@ export default function AlertBanner({ temperature = null, humidity = null }) {
       <button
         onClick={() => setDismissed(true)}
         title="Cerrar alerta"
-        style={{
-          color:        s.color,
-          background:   "transparent",
-          border:       "none",
-          cursor:       "pointer",
-          borderRadius: "var(--radius-sm)",
-          flexShrink:   0,
-          opacity:      0.7,
-        }}
-        className="flex items-center justify-center p-1
-                   hover:opacity-100 transition-opacity duration-150"
+        className="flex items-center justify-center p-1 opacity-70 hover:opacity-100 transition-opacity duration-150 cursor-pointer bg-transparent border-none flex-shrink-0"
       >
         <CloseIcon />
       </button>
