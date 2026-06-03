@@ -56,10 +56,10 @@ latest_reading: Optional[dict] = None
 # Control del ventilador / LED
 fan_state: bool = False
 
-# Anti-spam para alertas Telegram (mínimo 60s entre alertas)
+# Anti-spam para alertas Telegram (60s entre alertas)
 last_alert_time: Optional[datetime] = None
 
-# Nodos simulados (base) — Nodo 1 es el ESP32 real
+# Nodos simulados — Nodo 1 es el ESP32 real
 SIMULATED_NODES = [
     {"id": 2, "name": "Zona Norte",    "temp_base": 28.5, "hum_base": 55.0},
     {"id": 3, "name": "Recepción",     "temp_base": 29.2, "hum_base": 58.0},

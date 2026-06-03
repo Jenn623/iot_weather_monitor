@@ -2,11 +2,6 @@ import { useState, useEffect, useRef, useCallback } from "react";
 
 /**
  * useSensorData
- *
- * Hook central de datos del sensor. Actualmente opera en modo simulado.
- * Cuando el hardware esté listo, solo hay que cambiar SIMULATION_MODE
- * a false y apuntar API_URL al backend real.
- *
  * Retorna:
  *  - temperature   {number|null}   Último valor de temperatura
  *  - humidity      {number|null}   Último valor de humedad
@@ -19,14 +14,11 @@ import { useState, useEffect, useRef, useCallback } from "react";
  */
 
 // ── Configuración ─────────────────────────────────────────────
-// ── MODO DE OPERACIÓN ─────────────────────────────────────────
 // true  = datos simulados (sin hardware)
 // false = conecta al backend real (con ESP32)
 const SIMULATION_MODE = false;
 
-// ── URL del backend ────────────────────────────────────────────
-// Reemplaza con la URL que te genere ngrok en el paso 2.
-// Ejemplo: "https://abc123.ngrok-free.app"
+
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 const POLL_INTERVAL   = 5000;                        // ms entre lecturas (simuladas o reales)
 const MAX_HISTORY     = 60;                          // máximo de puntos en las gráficas

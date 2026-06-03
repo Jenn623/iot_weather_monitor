@@ -310,7 +310,3 @@ DHT22 → ESP32 ──── HTTP POST /api/sensor/data ────► FastAPI 
 - El backend **envía alerta** a Telegram cuando la temperatura supera **36°C** (máximo 1 alerta por minuto)
 
 ---
-
-## 📄 Licencia
-
-Proyecto desarrollado para la materia de Sistemas Distribuidos — 2025.

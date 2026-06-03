@@ -1,6 +1,5 @@
 /*
  * IoT Monitor — ESP32 + DHT22 + LED (Ventilador Simulado)
- * Materia: Sistemas Distribuidos
  *
  * Conexiones:
  *   DHT22 VCC  → 3.3V

@@ -121,7 +121,7 @@ export default function HistoryTable({ readings = [], maxRows = 8 }) {
   // Muestra las lecturas más recientes primero
   const rows = [...readings].reverse().slice(0, 50);
 
-  // Altura máxima del scroll: aproximadamente maxRows × altura de fila (34px) + header (36px)
+  // Altura máxima del scroll
   const maxHeight = maxRows * 34 + 36;
 
   return (
